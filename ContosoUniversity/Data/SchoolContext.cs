@@ -23,6 +23,11 @@ namespace ContosoUniversity.Data
         public DbSet<Student> Students { get; set;  }
 
 
+        // Quck summuarry of EF.
+        // The names of DbSet properties are used as table names. For entities not referenced by a DbSet property, entity class names are used as table names.
+        // Entity properties that are named ID or classnameID are recognized as primary key properties.
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Course>().ToTable("Course");

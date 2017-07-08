@@ -19,6 +19,8 @@ namespace ContosoUniversity.Controllers
             _context = context;    
         }
 
+
+
         // GET: Students
         // async, Task<t>, await, and ToListAsync methods make code execute asynchronously
         public async Task<IActionResult> Index()
@@ -26,6 +28,14 @@ namespace ContosoUniversity.Controllers
             // method gets a list of students from students entity set by reading Students property in teh dBContext instance.
             return View(await _context.Students.ToListAsync());
         }
+
+        // Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, ToListAsync, SingleOrDefaultAsync, and SaveChangesAsync
+        // Therefore does not include a query search.
+        // When you call any async EF method, always use the await keyword.
+
+
+
+
 
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -36,6 +46,9 @@ namespace ContosoUniversity.Controllers
             }
 
             var student = await _context.Students
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)
+                    .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
