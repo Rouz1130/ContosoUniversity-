@@ -46,17 +46,20 @@ namespace ContosoUniversity.Controllers
             }
             return View(await students.AsNoTracking().ToListAsync());
 
-
-        // Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, ToListAsync, SingleOrDefaultAsync, and SaveChangesAsync
-        // Therefore does not include a query search.
-        // When you call any async EF method, always use the await keyword.
+            //underscore and the string "desc" to specify descending order. The default sort order is ascending.
 
 
 
+            // Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, ToListAsync, SingleOrDefaultAsync, and SaveChangesAsync
+            // Therefore does not include a query search.
+            // When you call any async EF method, always use the await keyword.
 
 
-        // GET: Students/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+
+
+            // GET: Students/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
