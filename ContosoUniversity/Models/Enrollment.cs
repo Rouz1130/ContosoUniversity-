@@ -17,7 +17,7 @@ namespace ContosoUniversity.Models
        // primary key , also we can simply use ID but for this example we used EnrollmentID unlike the student class file were we used Id both work this is for illustrative purpose.
        // Although note that using ID without the name makes it easier to implement inheritance.
         public int EnrollmentID { get; set; }
-        public int CourseId { get; set; }
+        public int CourseID { get; set; }
         
         // the foreign key from the student class.
         // Beacuse enrollment is associated with one student this object class(enrollment) can hold a single student vs in the student class were we have list and therfore we can hold multiple enrollments. Same goes for the CourseId in this class.
