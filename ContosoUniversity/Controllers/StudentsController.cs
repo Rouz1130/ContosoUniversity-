@@ -23,13 +23,21 @@ namespace ContosoUniversity.Controllers
 
         // GET: Students
         // async, Task<t>, await, and ToListAsync methods make code execute asynchronously
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
             var students = from s in _context.Students
                            select s;
-            switch(sortOrder)
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString)
+                || s.FirstMidName.Contains(searchString));
+            }
+
+            switch (sortOrder)
             {
                 case "name_desc":
                     students = students.OrderByDescending(s => s.LastName);
@@ -45,21 +53,22 @@ namespace ContosoUniversity.Controllers
                     break;
             }
             return View(await students.AsNoTracking().ToListAsync());
+        }
 
-            //underscore and the string "desc" to specify descending order. The default sort order is ascending.
-
-
-
-            // Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, ToListAsync, SingleOrDefaultAsync, and SaveChangesAsync
-            // Therefore does not include a query search.
-            // When you call any async EF method, always use the await keyword.
+        //underscore and the string "desc" to specify descending order. The default sort order is ascending.
 
 
 
+        // Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, ToListAsync, SingleOrDefaultAsync, and SaveChangesAsync
+        // Therefore does not include a query search.
+        // When you call any async EF method, always use the await keyword.
 
 
-            // GET: Students/Details/5
-            public async Task<IActionResult> Details(int? id)
+
+
+
+        // GET: Students/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -187,7 +196,9 @@ namespace ContosoUniversity.Controllers
                     "see your system administrator.";
             }
 
+
             return View(student);
+        }
 
 
         [HttpPost, ActionName("Delete")]
