@@ -20,8 +20,10 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Students
+        // async, Task<t>, await, and ToListAsync methods make code execute asynchronously
         public async Task<IActionResult> Index()
         {
+            // method gets a list of students from students entity set by reading Students property in teh dBContext instance.
             return View(await _context.Students.ToListAsync());
         }
 
