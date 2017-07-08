@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Data
 {
-    public class SchoolContext
+    public class SchoolContext : DbContext
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
