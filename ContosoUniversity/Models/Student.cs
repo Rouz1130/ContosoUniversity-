@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace ContosoUniversity.Models
         [StringLength(50)]
         public string LastName { get; set; }
         [StringLength(50, ErrorMessage ="First name cannot be longer than 50 characters.")]
+        // Column attribute specifes that when DB is created the column of student table maps to the firstmidname property will be named FirstName. Beacuse DB queries will be by name if we allow midname it will get messy.
+        [Column("FirstName")]
         public string FirstMidName { get; set; }
         // DataType attribute used to specify a data type more specific and db intrinsic type.
         // DataType provides various types e.g Date, Time, PhoneNumber, Currency, EmailAddress etc.
