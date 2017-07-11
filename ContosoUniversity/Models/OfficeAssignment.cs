@@ -19,6 +19,6 @@ namespace ContosoUniversity.Models
 
         // both Insturctor and officeAssinment entities aer nullable because instructor might not have office space
         // and therfore cannot exist without and instructor or officeassingment
-        public Instructor Instructor { get;set }
+        public Instructor Instructor { get; set; }
     }
 }
