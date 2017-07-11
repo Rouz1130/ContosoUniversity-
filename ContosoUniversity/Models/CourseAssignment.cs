@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversity.Models
 {
-    public class CourseAssignments
+    public class CourseAssignment
     {
-        public int InsructorID { get; set; }
+        public int InstructorID { get; set; }
         public int CourseID { get; set; }
         public Instructor Instructor { get; set; }
         public Course Course { get; set; }
